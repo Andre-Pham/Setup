@@ -1,14 +1,12 @@
-To get these working, rename and add them to the path:
+To set this up, move `swift.yml` to the path:
 
 ```
 .github/workflows/swift.yml
 ```
 
-Make sure to address the TODO comments at the top of each file.
-
 ---
 
-To ensure these are enforced for pull requests (e.g. `develop` into `main`) add a new Ruleset in the repository's settings. Targeting the `main` branch (Include by pattern), tick:
+To ensure passing is enforced for pull requests (e.g. `develop` into `main`) add a new Ruleset in the repository's settings. Targeting the `main` branch (Include by pattern), tick:
 
 * Restrict deletions
 * Require a pull request before merging
