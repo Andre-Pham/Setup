@@ -3,6 +3,13 @@ import UIKit
 
 class DeviceContext {
     
+    public static var deviceID: UUID? {
+        guard let uuidString = UIDevice.current.identifierForVendor?.uuidString else {
+            return nil
+        }
+        return UUID(uuidString: uuidString)
+    }
+    
     public static var deviceType: UIUserInterfaceIdiom {
         return UIDevice.current.userInterfaceIdiom
     }
