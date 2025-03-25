@@ -16,7 +16,6 @@ Drag in all the files in the provided **Files** folder next to this guide.
 * `gyb`
 * `gyb.py`
 * `secrets.json`
-* `Secrets.swift`
 * `Secrets.swift.gyb`
 
 If you wish to pull the latest versions of `gyb` and `gyb.py`:
@@ -30,11 +29,11 @@ This guide assumes you're using folder references (not groups).
 
 ---
 
-Next, update `secrets.json` and `Secrets` with your secrets. `secrets.json` should contain the actual secrets - don't worry, the SCREAMING_SNAKE_CASE is auto-converted to camelCase during the build phase. In `Secrets.swift` just put placeholders so you can reference them in code. This file will be overwritten when you run the app, anyways.
+Next, update `secrets.json` with your secrets. `secrets.json` should contain the actual secrets - don't worry, the SCREAMING_SNAKE_CASE is auto-converted to camelCase during the build phase.
 
 ---
 
-Next, we'll add a **Run Script Build Phase** to automate that every time the project builds, GYB generates an updated `Secrets.swift` from `Secrets.swift.gyb`.
+Next, we'll add a **Run Script Build Phase** whereby every time the project builds, GYB generates a `Secrets.swift` file from `Secrets.swift.gyb`.
 
 In Xcode, select your project target, go to the **Build Phases** tab, and click the **"+"** button to add a new build phase. Choose **"New Run Script Phase"**.
 
@@ -99,8 +98,6 @@ Secrets/Secrets.swift.gyb
 
 ---
 
-Commit and push the `Secrets.swift` file (**which should still be the PLACEHOLDER version, not the generated version with the secrets)**.
-
 Finally, add the `.gitignore` file to the `Secrets` folder:
 
 ```
@@ -121,4 +118,4 @@ Push everything.
 
 All done. You may now build and run.
 
-If you decide to add/change your secrets, you will have to restore your placeholder `Secrets.swift` file, add the placeholder secrets, remove it from the gitignore, push it, then restore it to the gitignore. If this is too annoying, the placeholder Secrets.swift file is **completely optional** and can be completely removed - however it does mean when you clone the repo the first build will always fail (since `Secrets.swift` doesn't exist yet).
+The `Secrets.json` file is regenerated on every single build. Note that the very first build will fail because `Secrets.swift` won't exist yet - that's totally normal, just build again.
