@@ -4,6 +4,8 @@ To set this up, move `swift.yml` to the path:
 .github/workflows/swift.yml
 ```
 
+Address any `TODO`s.
+
 ---
 
 To ensure passing is enforced for pull requests (e.g. `develop` into `main`) add a new Ruleset in the repository's settings. Targeting the `main` branch (Include by pattern), tick:

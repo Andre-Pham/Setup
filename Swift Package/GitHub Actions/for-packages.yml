@@ -16,6 +16,10 @@ jobs:
     - name: Setup Swift
       uses: swift-actions/setup-swift@v1
       with:
+        # TODO:
+        # If you require swift 5.10 or later
+        # Set this to that version (e.g. swift-version: '5.10')
+        # And use swift-actions/setup-swift@v2
         swift-version: '5'
     - name: Build
       run: swift build

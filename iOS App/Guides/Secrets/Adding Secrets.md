@@ -118,4 +118,4 @@ Push everything.
 
 All done. You may now build and run.
 
-The `Secrets.json` file is regenerated on every single build. Note that the very first build will fail because `Secrets.swift` won't exist yet - that's totally normal, just build again.
+The `Secrets.swift` file is regenerated on every single build. Note that the very first build will fail because `Secrets.swift` won't exist yet - that's totally normal, just build again.
