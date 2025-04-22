@@ -3,33 +3,38 @@ import Foundation
 class EnvironmentContext {
     
     public enum Environment {
-        /// The app is running locally using a debug scheme
-        case debug
-        /// The app is running using a release scheme, either locally or in TestFlight
-        case staging
-        /// The app is running in production mode, as installed from the App Store
-        case production
+        /// The app is running locally using a debug or release scheme
+        case local
+        /// The app is running using a release scheme in TestFlight
+        case testFlight
+        /// The app is running as installed from the App Store
+        case appStore
     }
     
     public static var environment: Environment {
         #if DEBUG
-        return .debug
+        return .local
         #else
         guard !self.isSimulator else {
-            return .staging
+            return .local
+        }
+        if Bundle.main.path(forResource: "embedded", ofType: "mobileprovision") != nil {
+            return .local
         }
         if let receiptURL = Bundle.main.appStoreReceiptURL {
             let isSandbox = receiptURL.lastPathComponent == "sandboxReceipt"
-            return isSandbox ? .staging : .production
-        } else {
-            // If there is no receipt available (can occur on simulators in release mode)
-            return .staging
+            return isSandbox ? .testFlight : .appStore
         }
+        return .local
         #endif
     }
     
     public static var isSimulator: Bool {
-        return ProcessInfo.processInfo.environment["SIMULATOR_DEVICE_NAME"] != nil
+        #if targetEnvironment(simulator)
+        return true
+        #else
+        return false
+        #endif
     }
     
     public static var isPreview: Bool {
