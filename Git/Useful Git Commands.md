@@ -65,7 +65,11 @@ This will undo all the changes from the previous commit, but stage it as a new c
 E.g. if I committed “hello world" to a file, this command would add changes to my file that remove “hello world" from that file.
 
 ```
-$ git revert HEAD
+$ git revert --no-commit HEAD
+```
+
+```
+$ git revert --no-commit HEAD~2..HEAD
 ```
 
 ## Undo Merge
